@@ -201,6 +201,48 @@ It converts a domain name such as `google.com` into IP addresses. In my output, 
 
 ---
 
+---
+
+## 7. Additional Network Verification
+
+The following commands were run to verify the current network configuration.
+
+### Display interfaces
+
+```bash
+ip -br addr
+```
+
+The output showed the loopback interface, the wireless interface `wlp2s0`, and Docker-related virtual interfaces. The wireless interface was up and had an IPv4 address of `100.128.167.5/20` during this check.
+
+### Display routes
+
+```bash
+ip route
+```
+
+The default route used gateway `100.128.160.1` through `wlp2s0` during this check.
+
+### DNS lookup
+
+```bash
+nslookup example.com
+```
+
+The lookup returned IPv4 and IPv6 addresses for `example.com`, confirming that DNS resolution worked during the test.
+
+### Local connectivity
+
+```bash
+ping -c 4 127.0.0.1
+```
+
+All four packets were received with zero packet loss. This tested the local loopback interface.
+
+### Notes
+
+Network addresses, routes, and listening sockets may change depending on the current network and running applications.
+
 ## Conclusion
 
 Through these commands, I practiced basic Linux networking concepts including:
